@@ -1,4 +1,4 @@
-let recoveredData = JSON.parse(localStorage.getItem('cart'));
+let recoveredData = JSON.parse(localStorage.getItem("cart"));
 let id;
 let dataPrice = [];
 
@@ -22,13 +22,13 @@ async function totalProducts(){
 //eliminer produits
 async function eraseProduct() {
 
-    const eraseItem = document.querySelectorAll('.deleteItem');
+    const eraseItem = document.querySelectorAll(".deleteItem");
     //parcourrir les buttons suprimmer
-    for (let i = 0; i < eraseItem.length; i++ ) {
-        eraseItem[i].addEventListener('click', (e) => {
+    for (let i = 0; i < eraseItem.length; i++) {
+        eraseItem[i].addEventListener("click", (e) => {
             
-            const productId = e.target.closest('article').dataset.id;
-            const productColor = e.target.closest('article').dataset.color;
+            const productId = e.target.closest("article").dataset.id;
+            const productColor = e.target.closest("article").dataset.color;
             //parcourrir le localstorage et trouver similarités
             for (let i = 0; i < recoveredData.length; i++) {
                 if (recoveredData[i].id == productId && recoveredData[i].color == productColor) {
@@ -36,7 +36,7 @@ async function eraseProduct() {
                     alert("Le produit a été suprimmé")
                 }
             }
-            localStorage.setItem('cart', JSON.stringify(recoveredData));
+            localStorage.setItem("cart", JSON.stringify(recoveredData));
             window.location.reload();
         });
     }
@@ -48,8 +48,8 @@ async function modifyProduct(){
     for (let i = 0; i < counter.length; i++ ) {
         
         counter[i].addEventListener("change",modificar = (e) => {
-            const productId = e.target.closest('article').dataset.id;
-            const productColor = e.target.closest('article').dataset.color;
+            const productId = e.target.closest("article").dataset.id;
+            const productColor = e.target.closest("article").dataset.color;
             let value = parseInt (e.target.value);
             for (let i = 0; i < recoveredData.length; i++) {
                 if (recoveredData[i].id == productId && recoveredData[i].color == productColor) {
@@ -129,7 +129,7 @@ function showData(data) {
                 settingQuantity.appendChild(itemQuantity);
 
                     const quantity = document.createElement("p");
-                    quantity.innerText = 'Qté : '
+                    quantity.innerText = "Qté : "
                     const inputQuantity = document.createElement("input");
                     inputQuantity.classList.add("itemQuantity");
                     inputQuantity.name = "itemQuantity";
@@ -147,23 +147,18 @@ function showData(data) {
 
                     const deleteItem = document.createElement("p");
                     deleteItem.classList.add("deleteItem");
-                    deleteItem.innerHTML = 'Supprimer';
+                    deleteItem.innerHTML = "Supprimer";
                     deleteSection.appendChild(deleteItem);
                     
     
     
-    totalProducts(dataPrice);
-    
-    
+    totalProducts();
     eraseProduct();
-
     modifyProduct();
 } 
 
 getData();
 
-
-console.log(dataPrice)
 
 //////////////////////////////     FORMULAIRE     //////////////////////////
 let form = document.querySelector(".cart__order__form");
@@ -180,46 +175,46 @@ let cityTest;
 let emailTest;
 
 let firstNameError = document.getElementById("firstNameErrorMsg");
-form.firstName.addEventListener('change', (e) => {
+form.firstName.addEventListener("change", (e) => {
     let value = e.target.value;
     if (nameRegExp.test(value)){
-        firstNameError.innerHTML = '';
+        firstNameError.innerHTML = "";
         firstNameTest = nameRegExp.test(value);
     } else {
-        firstNameError.innerHTML = 'Veuillez vérifier votre prénom.';
+        firstNameError.innerHTML = "Veuillez vérifier votre prénom.";
     }
 });
 
 let lastNameError = document.getElementById("lastNameErrorMsg");
-form.lastName.addEventListener('change', (e) => {
+form.lastName.addEventListener("change", (e) => {
     let value = e.target.value;
     if (nameRegExp.test(value)){
-        lastNameError.innerHTML = '';
+        lastNameError.innerHTML = "";
         lastNameTest = nameRegExp.test(value); 
     } else {
-        lastNameError.innerHTML = 'Veuillez vérifier votre nom.';     
+        lastNameError.innerHTML = "Veuillez vérifier votre nom.";     
     }
 });
 
 let addressError = document.getElementById("addressErrorMsg");
-form.address.addEventListener('change', (e) => {
+form.address.addEventListener("change", (e) => {
     let value = e.target.value;
     if (adressRegExp.test(value)){
-        addressError.innerHTML = '';
+        addressError.innerHTML = "";
         addressTest = adressRegExp.test(value);
     } else {
-        addressError.innerHTML = 'Veuillez vérifier votre addresse.';
+        addressError.innerHTML = "Veuillez vérifier votre addresse.";
     }
 });
 
 let cityError = document.getElementById("cityErrorMsg");
-form.city.addEventListener('change', (e) => {
+form.city.addEventListener("change", (e) => {
     let value = e.target.value;
     if (nameRegExp.test(value)){
-        cityError.innerHTML = '';
+        cityError.innerHTML = "";
         cityTest = nameRegExp.test(value);
     } else {
-        cityError.innerHTML = 'Veuillez vérifier votre ville.';
+        cityError.innerHTML = "Veuillez vérifier votre ville."
     } 
 });
 
@@ -227,10 +222,10 @@ let emailError = document.getElementById("emailErrorMsg");
 form.email.addEventListener("change", (e) => {
     let value = e.target.value;
     if (emailRegExp.test(value)){
-        emailError.innerHTML = '';
+        emailError.innerHTML = "";
         emailTest = emailRegExp.test(value);
     } else {
-        emailError.innerHTML = 'Veuillez vérifier votre e-mail.';
+        emailError.innerHTML = "Veuillez vérifier votre e-mail.";
     } 
 });
 
@@ -258,10 +253,10 @@ sendButton.addEventListener("click", (e) => {
             };
 
         const sendObject = {
-            method: 'POST',
+            method: "POST",
             body: JSON.stringify(order),
             headers: {
-                'Accept': 'application/json', 
+                "Accept": "application/json", 
                 "Content-Type": "application/json" 
             },
         };
@@ -270,7 +265,7 @@ sendButton.addEventListener("click", (e) => {
             .then((response) => response.json())
             .then((data) => {
                 window.location.href = `confirmation.html?orderId=${data.orderId}`;
-                localStorage.removeItem('cart');
+                localStorage.removeItem("cart");
             })
             .catch((error) => console.log(error))
         
