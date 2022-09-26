@@ -269,7 +269,7 @@ sendButton.addEventListener("click", (e) => {
         fetch("http://localhost:3000/api/products/order", sendObject)
             .then((response) => response.json())
             .then((data) => {
-                window.location.href = "confirmation.html?orderId=" + data.orderId;
+                window.location.href = `confirmation.html?orderId=${data.orderId}`;
                 localStorage.removeItem('cart');
             })
             .catch((error) => console.log(error))
