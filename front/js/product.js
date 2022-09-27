@@ -28,6 +28,7 @@ function productData(data) {
     descriptionElement.innerText = data.description;
 
     const colorElement = document.getElementById("colors");
+    //choissir la couleur
     for (let i in data.colors) {
         const color = document.createElement("option");
         color.innerHTML = data.colors[i];

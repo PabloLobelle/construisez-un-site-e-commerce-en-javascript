@@ -251,7 +251,7 @@ sendButton.addEventListener("click", (e) => {
                 },
                 products: itemId
             };
-
+        console.log(order);
         const sendObject = {
             method: "POST",
             body: JSON.stringify(order),
